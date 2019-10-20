@@ -48,7 +48,17 @@ searchBtn.addEventListener("click", () => {
             searchBtn.innerText = "Search";
         })
     }
-});
+})
+
+/**
+ * Clicks search button on enter key being pressed in input
+ */
+userInput.addEventListener("keyup", (event) => {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        searchBtn.click();
+    }
+})
 
 /**
  * Populates an array with all of the different categories provided by the API
