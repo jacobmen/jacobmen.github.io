@@ -77,7 +77,7 @@ function search() {
     if (input != "" && categoriesLoaded) {
         // Creates top row for table
         resultsTable.innerHTML = `<tr>
-                                    <th>Question</th>
+                                    <th>Clue</th>
                                     <th>Answer</th>
                                     <th>Value</th>
                                     <th>Air Date</th>
