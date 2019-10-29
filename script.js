@@ -105,7 +105,7 @@ function search() {
             searchBtn.innerText = "Search";
         })
     }
-} 
+}
 
 /**
  * 1. The category search starts only when the amount of keys entered is greater than 3
@@ -198,6 +198,7 @@ async function makeCategoryRequest(count, offset) {
     })
 }
 
+// For debugging
 let time = Date.now();
 createCategoryArray().then(() => {
     console.log(categories.length);
