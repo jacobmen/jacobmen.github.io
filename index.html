@@ -18,7 +18,16 @@
 <body>
     <div class="container">
         <h1>JepSearch</h1>
-        <input id="userInput" type="text" placeholder="Search by category">
+        <div id="search-container">
+            <input id="userInput" type="text" placeholder="Search by category">
+            <select id="display-amount">
+                <option value="10">Display Amount (10 by Default)</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+            </select>
+        </div>
         <button id="searchBtn" disabled>Please wait for information to load</button>
         <button type="button" class="collapsible">Options</button>
         <div class="content">

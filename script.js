@@ -7,7 +7,7 @@ const categorySearch = document.getElementById("myInput");
 const dropdown = document.getElementById("myDropdown");
 const dropdownContainer = document.getElementById("drop-container");
 const valueSelect = document.getElementById("value-select");
-
+const displayAmount = document.getElementById("display-amount");
 
 const api = "https://jservice-proxy.netlify.com/api/";
 // Populated with createCategoryArray() function below and contains all of the category objects the API provides
@@ -22,6 +22,8 @@ let selectedValue = 0;
 let startDate = null;
 // Var stores end date for calendar
 let endDate = null;
+// Amount of questions to display
+let displayCount = 10;
 
 // This is the calendar object that initiates a search when a start and end date are selected
 flatpickr("#datepicker", {
@@ -38,6 +40,11 @@ flatpickr("#datepicker", {
         }
     }
 });
+
+displayAmount.addEventListener("change", () => {
+    displayCount = displayAmount.options[displayAmount.selectedIndex].value;
+    search();
+})
 
 // Set search parameters to default value on page load
 userInput.value = "";
@@ -73,7 +80,6 @@ searchBtn.addEventListener("click", search);
  */
 function search() {
     let input = userInput.value;
-    const displayCount = 20;
     if (input != "" && categoriesLoaded) {
         // Creates top row for table
         resultsTable.innerHTML = `<tr>

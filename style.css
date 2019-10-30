@@ -71,6 +71,15 @@ button {
     display: block;
 }
 
+#search-container {
+    display: flex;
+}
+
+#userInput {
+    
+    min-width: 75%;
+}
+
 #drop-container {
     height: 300px;
     overflow: auto;
