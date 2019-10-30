@@ -2,7 +2,8 @@
 const userInput = document.getElementById("userInput");
 const searchBtn = document.getElementById("searchBtn");
 const resultsTable = document.getElementById("results-table");
-const coll = document.getElementsByClassName("collapsible");
+const collapsible = document.getElementById("collapsible");
+const collapsibleContent = document.getElementById("content");
 const categorySearch = document.getElementById("myInput");
 const dropdown = document.getElementById("myDropdown");
 const dropdownContainer = document.getElementById("drop-container");
@@ -25,6 +26,8 @@ let endDate = null;
 // Amount of questions to display
 let displayCount = 10;
 
+createCategoryArray();
+
 // This is the calendar object that initiates a search when a start and end date are selected
 flatpickr("#datepicker", {
     mode: "range",
@@ -41,6 +44,7 @@ flatpickr("#datepicker", {
     }
 });
 
+// For changing the amount of questions displayed
 displayAmount.addEventListener("change", () => {
     displayCount = displayAmount.options[displayAmount.selectedIndex].value;
     search();
@@ -204,13 +208,6 @@ async function makeCategoryRequest(count, offset) {
     })
 }
 
-// For debugging
-let time = Date.now();
-createCategoryArray().then(() => {
-    console.log(categories.length);
-    console.log(Date.now() - time);
-})
-
 /**
  * Returns an array of questions tied to the categories in the input array 
  * with additional options collapsible added if user modified them
@@ -250,14 +247,13 @@ function clearDropdown() {
 }
 
 // Code for working with collapsible
-for (let i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
-}
+collapsible.addEventListener("click", () => {
+    collapsible.classList.toggle("active");
+    if (collapsibleContent.style.maxHeight) {
+        collapsibleContent.style.maxHeight = null;
+        resultsTable.style.transform = "";
+    } else {
+        collapsibleContent.style.maxHeight = collapsibleContent.scrollHeight + "px";
+        resultsTable.style.transform = "translateY(-175px)";
+    }
+});
